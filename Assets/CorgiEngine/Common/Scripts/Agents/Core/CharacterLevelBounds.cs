@@ -93,7 +93,7 @@ namespace MoreMountains.CorgiEngine
 				
 				if ((Right != BoundsBehavior.Nothing) && (_controller.ColliderRightPosition.x > _bounds.max.x))
 				{
-					_constrainedPosition.x = _bounds.max.x - _controller.ColliderSize.x / 2 - _controller.ColliderOffset.x;
+					_constrainedPosition.x = _bounds.max.x + _controller.ColliderSize.x / 2 - _controller.ColliderOffset.x;
 					_constrainedPosition.y = transform.position.y;
 					if (ResetForcesOnConstrain) { _controller.SetHorizontalForce(0f); }
 					ApplyBoundsBehavior(Right, _constrainedPosition);		
@@ -103,7 +103,7 @@ namespace MoreMountains.CorgiEngine
 				{
 					_constrainedPosition.x = _bounds.min.x + _controller.ColliderSize.x / 2 + _controller.ColliderOffset.x;
 					_constrainedPosition.y = transform.position.y;
-					if (ResetForcesOnConstrain) { _controller.SetHorizontalForce(0f); }
+                    if (ResetForcesOnConstrain) { _controller.SetHorizontalForce(0f); }
 					ApplyBoundsBehavior(Left, _constrainedPosition);
 				}					
 			}	

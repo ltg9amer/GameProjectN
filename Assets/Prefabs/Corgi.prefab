@@ -564,7 +564,7 @@ MonoBehaviour:
   ActiveAfterDeath: 0
   TouchTheGroundFeedback: {fileID: 0}
   MinimumAirTimeBeforeFeedback: 0.2
-  StopWalkingWhenCollidingWithAWall: 0
+  StopWalkingWhenCollidingWithAWall: 1
 --- !u!114 &220534183119861754
 MonoBehaviour:
   m_ObjectHideFlags: 0
