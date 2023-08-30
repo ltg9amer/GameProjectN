@@ -40,14 +40,14 @@ namespace MoreMountains.Tools
 		/// <param name="type"></param>
 		/// <param name="parameterList"></param>
 		public static void AddAnimatorParameterIfExists(Animator animator, string parameterName, out int parameter, AnimatorControllerParameterType type, HashSet<int> parameterList)
-		{
-			if (string.IsNullOrEmpty(parameterName))
+        {
+            if (string.IsNullOrEmpty(parameterName))
 			{
 				parameter = -1;
 				return;
 			}
 
-			parameter = Animator.StringToHash(parameterName);
+            parameter = Animator.StringToHash(parameterName);
 
 			if (animator.MMHasParameterOfType(parameterName, type))
 			{
@@ -63,8 +63,8 @@ namespace MoreMountains.Tools
 		/// <param name="type"></param>
 		/// <param name="parameterList"></param>
 		public static void AddAnimatorParameterIfExists(Animator animator, string parameterName, AnimatorControllerParameterType type, HashSet<string> parameterList)
-		{
-			if (animator.MMHasParameterOfType(parameterName, type))
+        {
+            if (animator.MMHasParameterOfType(parameterName, type))
 			{
 				parameterList.Add(parameterName);
 			}

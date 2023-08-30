@@ -370,6 +370,14 @@ namespace MoreMountains.CorgiEngine
 		/// </summary>
 		protected virtual void SetClimbingState()
 		{
+			_character.ChangeAnimator(_character._animator);
+			BindAnimator();
+
+			for (int i = 0; i < 6; ++i)
+			{
+				_character.CorgiFrontSprites[i].enabled = false;
+				_character.CorgiBackSprites[i].enabled = true;
+			}
 
 			// we set its state to LadderClimbing
 			_movement.ChangeState(CharacterStates.MovementStates.LadderClimbing);			
@@ -426,9 +434,18 @@ namespace MoreMountains.CorgiEngine
 		/// Resets various states so that the Character isn't climbing anymore
 		/// </summary>
 		public virtual void GetOffTheLadder()
-		{
-			// we make it stop climbing, it has reached the ground.
-			_condition.ChangeState(CharacterStates.CharacterConditions.Normal);
+        {
+            _character.ChangeAnimator(_character._animator);
+            BindAnimator();
+
+            for (int i = 0; i < 6; ++i)
+            {
+                _character.CorgiBackSprites[i].enabled = false;
+                _character.CorgiFrontSprites[i].enabled = true;
+            }
+
+            // we make it stop climbing, it has reached the ground.
+            _condition.ChangeState(CharacterStates.CharacterConditions.Normal);
 			_movement.ChangeState(CharacterStates.MovementStates.Idle);
 			CurrentLadderClimbingSpeed = Vector2.zero;	
 			_controller.GravityActive(true);	

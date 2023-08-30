@@ -312,10 +312,11 @@ namespace MoreMountains.CorgiEngine
 		{
 			parameter = Animator.StringToHash(parameterName);
 
-			if (_animator == null) 
+            if (_animator == null) 
 			{
 				return;
 			}
+
 			if (_animator.MMHasParameterOfType(parameterName, parameterType))
 			{
 				_character._animatorParameters.Add(parameter);
