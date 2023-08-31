@@ -3,7 +3,6 @@ using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
 using System;
-using UnityEditor.Animations;
 
 namespace MoreMountains.CorgiEngine
 {
@@ -59,8 +58,8 @@ namespace MoreMountains.CorgiEngine
         /// the character animator
         [Tooltip("the character animator")]
         public Animator CharacterAnimator;
-        public AnimatorController CorgiFrontController;
-        public AnimatorController CorgiBackController;
+        public RuntimeAnimatorController CorgiFrontController;
+        public RuntimeAnimatorController CorgiBackController;
         public List<SpriteRenderer> CorgiFrontSprites;
         public List<SpriteRenderer> CorgiBackSprites;
         /// Set this to false if you want to implement your own animation system
