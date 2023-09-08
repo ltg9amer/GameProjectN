@@ -66,11 +66,11 @@ namespace MoreMountains.CorgiEngine
 			}
 
 			if (!CheckNumberOfUses())
-			{
-				return;
+            {
+                return;
 			}
 
-			base.TriggerButtonAction (instigator);
+            base.TriggerButtonAction (instigator);
 
 			StartCoroutine(GoToNextLevelCoroutine());
 			ActivateZone ();

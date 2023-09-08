@@ -424,6 +424,8 @@ namespace MoreMountains.CorgiEngine
                 _animator = this.gameObject.GetComponent<Animator>();
             }
 
+            _animator.runtimeAnimatorController = CorgiFrontController;
+
             if (_animator != null)
             {
                 InitializeAnimatorParameters();
@@ -1029,6 +1031,8 @@ namespace MoreMountains.CorgiEngine
                     ability.ResetAbility();
                 }
             }
+
+            _animator.runtimeAnimatorController = CorgiFrontController;
         }
 
         /// <summary>

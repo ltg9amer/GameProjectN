@@ -279,7 +279,7 @@ namespace MoreMountains.CorgiEngine
 				return;
 			}
 
-			_stayingGameObjects.Add(instigator);
+            _stayingGameObjects.Add(instigator);
 			ActivateZone();
 		}
 
@@ -430,12 +430,12 @@ namespace MoreMountains.CorgiEngine
 			if (staying && (OnStay != null))
 			{
 				OnStay.Invoke();
-			}
+            }
         
 			if (staying || !AlsoPerformChecksOnStay)
 			{
 				return;
-			}
+            }
 			TriggerEnter(collidingObject.gameObject);
 		}
 
@@ -487,13 +487,13 @@ namespace MoreMountains.CorgiEngine
 			if (AutoActivation)
 			{
 				TriggerButtonAction(collider);
-			}
+            }
 
 			// if we're not already showing the prompt and if the zone can be activated, we show it
 			if (ShowPromptWhenColliding)
 			{
 				ShowPrompt();
-			}
+            }
 		}
         
 		/// <summary>
@@ -560,8 +560,8 @@ namespace MoreMountains.CorgiEngine
 					}
 					return lastObject;
 				}
-			}
-			return true;
+            }
+            return true;
 		}
 
 		/// <summary>
@@ -571,37 +571,37 @@ namespace MoreMountains.CorgiEngine
 		public virtual bool CheckNumberOfUses()
 		{
 			if (!Activable)
-			{
-				return false;
+            {
+                return false;
 			}
             
 			if ( (_currentCharacter != null) 
 			     && (CanOnlyActivateIfGrounded) 
 			     && (!_currentCharacter.gameObject.MMGetComponentNoAlloc<CorgiController>().State.IsGrounded) )
-			{
-				return false;
+            {
+                return false;
 			}
 
 			if (Time.time - _lastActivationTimestamp < DelayBetweenUses)
-			{
-				return false;
+            {
+                return false;
 			}
 
 			if (UnlimitedActivations)
-			{
-				return true;
+            {
+                return true;
 			}
 
 			if (_numberOfActivationsLeft == 0)
-			{
-				return false;
+            {
+                return false;
 			}
 
 			if (_numberOfActivationsLeft > 0)
-			{
-				return true;
-			}
-			return false;
+            {
+                return true;
+            }
+            return false;
 		}
 
 		/// <summary>
@@ -665,7 +665,7 @@ namespace MoreMountains.CorgiEngine
 				}
 			}
 
-			return true;
+            return true;
 		}
 	}
 }

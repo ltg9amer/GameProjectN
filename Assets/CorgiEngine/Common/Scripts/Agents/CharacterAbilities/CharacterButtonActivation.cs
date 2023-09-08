@@ -54,8 +54,8 @@ namespace MoreMountains.CorgiEngine
 		/// Every frame, we check the input to see if we need to pause/unpause the game
 		/// </summary>
 		protected override void HandleInput()
-		{
-			if (InButtonActivatedZone && (ButtonActivatedZone != null))
+        {
+            if (InButtonActivatedZone && (ButtonActivatedZone != null))
 			{
 				if (Time.time - _lastActivatedAt < ActivationCooldownDuration)
 				{
