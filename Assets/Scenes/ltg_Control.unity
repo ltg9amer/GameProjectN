@@ -181,7 +181,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11403552, guid: 6c2ed73007b52d34b9898edef9ad7862, type: 3}
       propertyPath: InputKey
-      value: 114
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403552, guid: 6c2ed73007b52d34b9898edef9ad7862, type: 3}
+      propertyPath: InputType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403552, guid: 6c2ed73007b52d34b9898edef9ad7862, type: 3}
+      propertyPath: LevelName
+      value: ltg_Control
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403552, guid: 6c2ed73007b52d34b9898edef9ad7862, type: 3}
+      propertyPath: ButtonPromptText
+      value: Space
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403552, guid: 6c2ed73007b52d34b9898edef9ad7862, type: 3}
+      propertyPath: AlsoPerformChecksOnStay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403552, guid: 6c2ed73007b52d34b9898edef9ad7862, type: 3}
+      propertyPath: ButtonActivatedRequirement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403552, guid: 6c2ed73007b52d34b9898edef9ad7862, type: 3}
+      propertyPath: RequiresButtonActivationAbility
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1382,6 +1406,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2529877061197650768, guid: a5eb890b5811ff244a61bc31e62dee05,
+        type: 3}
+      propertyPath: ForcedMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529877061197650768, guid: a5eb890b5811ff244a61bc31e62dee05,
+        type: 3}
+      propertyPath: MovementControl
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6359104431916789782, guid: a5eb890b5811ff244a61bc31e62dee05,
         type: 3}
       propertyPath: m_Name
@@ -1399,6 +1433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7776609505652035243, guid: a5eb890b5811ff244a61bc31e62dee05,
         type: 3}
+      propertyPath: LevelBounds.m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776609505652035243, guid: a5eb890b5811ff244a61bc31e62dee05,
+        type: 3}
       propertyPath: LevelBounds.m_Extent.x
       value: 48.5
       objectReference: {fileID: 0}
@@ -1406,6 +1445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: LevelBounds.m_Extent.y
       value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776609505652035243, guid: a5eb890b5811ff244a61bc31e62dee05,
+        type: 3}
+      propertyPath: LevelBounds.m_Extent.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7776609505652035243, guid: a5eb890b5811ff244a61bc31e62dee05,
         type: 3}
@@ -2824,46 +2868,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: -12.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: 84.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: 84.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: -12.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514812304973357353, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-        type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 8424643197800962214, guid: 721f2c0d8f0db5646a6c4e967b81be93,
         type: 3}
