@@ -1,3 +1,4 @@
+using MoreMountains.InventoryEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,8 @@ public class SettingDoubleTap : MonoBehaviour
                     // 더블 클릭 감지됨
                     singleTap = false;
                     lastTapTime = 0;
-                    SceneManager.LoadScene("SettingScene"); // 원하는 씬 이름으로 변경
+
+                    GetComponent<ButtonController>().LoadScene("SettingScene");
                 }
                 else
                 {
