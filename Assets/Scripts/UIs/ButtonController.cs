@@ -5,6 +5,15 @@ public class ButtonController : MonoBehaviour
 {
 	public void LoadScene(string sceneName)
 	{
-		SceneManager.LoadScene(sceneName); // MainScene으로 이동합니다.
+		SceneManager.LoadScene(sceneName);
 	}
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

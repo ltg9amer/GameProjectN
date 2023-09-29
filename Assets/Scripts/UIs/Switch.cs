@@ -10,11 +10,6 @@ public class Switch : MonoBehaviour
 	public Image img;
 	int index;
 
-	private void Start()
-	{
-		
-	}
-
 	private void Update()
 	{
 		if(index == 1)
