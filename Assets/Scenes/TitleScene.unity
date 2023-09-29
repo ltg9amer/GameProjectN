@@ -465,7 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048849750}
   - component: {fileID: 1048849753}
-  - component: {fileID: 1048849754}
+  - component: {fileID: 1048849752}
   - component: {fileID: 1048849751}
   m_Layer: 5
   m_Name: Scrolling
@@ -488,17 +488,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 666265522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 4096, y: 2276}
-=======
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 16.890015, y: -9.400024}
-  m_SizeDelta: {x: 1953.17, y: 1085.55}
->>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1048849751
 MonoBehaviour:
@@ -512,18 +505,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91125063fad302547b89713f3f2077e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Img: {fileID: 1048849754}
+  _Img: {fileID: 1048849752}
   _x: 0.03
   _y: 0.03
---- !u!222 &1048849753
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048849749}
-  m_CullTransparentMesh: 1
---- !u!114 &1048849754
+--- !u!114 &1048849752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -543,17 +528,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< Updated upstream
   m_Texture: {fileID: 2800000, guid: 5c336af8d920d54429bf17aa4cc2efb8, type: 3}
-=======
-  m_Texture: {fileID: 2800000, guid: 62c5cc0974e56544492c2a4e7c97aae7, type: 3}
->>>>>>> Stashed changes
   m_UVRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
+--- !u!222 &1048849753
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048849749}
+  m_CullTransparentMesh: 1
 --- !u!1 &1365146411
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd17ddf491bb3f14fb6567102e5332c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blinkCoolTime: 0.5
 --- !u!1 &1568065452
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +852,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c23d567112b61f4d92e6904ae3556aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadSceneEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 666265523}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1846841180
 GameObject:
   m_ObjectHideFlags: 0
