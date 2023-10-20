@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class GameStart : MonoBehaviour
 {
     public UnityEvent loadSceneEvent;
+    public PauseMenu pauseMenu;
 
     private void Update()
     {
@@ -29,7 +30,7 @@ public class GameStart : MonoBehaviour
 
         Button dumpButton;
 
-        return results[0].gameObject.TryGetComponent(out dumpButton);
+        return results[0].gameObject.TryGetComponent(out dumpButton) | pauseMenu.PausePanel.activeInHierarchy;
     }
 
     private bool IsTouchOverUIObject()
@@ -42,6 +43,6 @@ public class GameStart : MonoBehaviour
 
         Button dumpButton;
 
-        return results[0].gameObject.TryGetComponent(out dumpButton);
+        return results[0].gameObject.TryGetComponent(out dumpButton) | pauseMenu.PausePanel.activeInHierarchy;
     }
 }

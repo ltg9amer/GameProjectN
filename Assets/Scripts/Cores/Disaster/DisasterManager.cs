@@ -7,8 +7,6 @@ public class DisasterManager : MonoBehaviour
 {
     static public DisasterManager instance = null;
     [SerializeField]
-    private List<Disaster> disasters = new List<Disaster>();
-    [SerializeField]
     private float hailDelay = 13f;
     [SerializeField]
     private float heavySnowDelay = 30f;
@@ -46,7 +44,7 @@ public class DisasterManager : MonoBehaviour
             instance = this;
         }
 
-        disasters = GetComponentsInChildren<Disaster>().ToList();
+        List<Disaster> disasters = GetComponentsInChildren<Disaster>().ToList();
 
         foreach (var disaster in disasters)
         {

@@ -5,6 +5,10 @@ public class ButtonController : MonoBehaviour
 {
 	public void LoadScene(string sceneName)
 	{
+        GameManager.instance?.ChangeScene();
+
+        Time.timeScale = 1f;
+
 		SceneManager.LoadScene(sceneName);
 	}
 
