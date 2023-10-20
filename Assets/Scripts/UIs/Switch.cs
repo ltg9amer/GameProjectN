@@ -5,40 +5,46 @@ using UnityEngine.UI;
 
 public class Switch : MonoBehaviour
 {
-	public Image On;
-	public Image Off;
-	public Image img;
-	int index;
+    public RectTransform jumpButton;
+    public RectTransform joystick;
+	public Image on;
+	public Image off;
+    public bool isToggleOff;
 
-	private void Start()
-	{
-		
-	}
+	public void On()
+    {
+        off.gameObject.SetActive(false);
+        on.gameObject.SetActive(true);
 
-	private void Update()
-	{
-		if(index == 1)
-		{
-			img.gameObject.SetActive(false);
-		}
+        if (isToggleOff)
+        {
+            isToggleOff = false;
 
-		if(index == 0)
-		{
-			img.gameObject.SetActive(true);
-		}
-	}
+            ButtonSwap();
+        }
 
-	public void ON()
-	{
-		index = 1;
-		Off.gameObject.SetActive(true);
-		On.gameObject.SetActive(false);
-	}
+        GameManager.instance.ControlReversed = !isToggleOff;
+    }
 
-	public void OFF()
-	{
-		index = 0;
-		On.gameObject.SetActive(true);
-		Off.gameObject.SetActive(false);
-	}
+    public void Off()
+    {
+        on.gameObject.SetActive(false);
+        off.gameObject.SetActive(true);
+
+        if (!isToggleOff)
+        {
+            isToggleOff = true;
+
+            ButtonSwap();
+        }
+
+        GameManager.instance.ControlReversed = !isToggleOff;
+    }
+
+    private void ButtonSwap()
+    {
+        Vector3 tempRect = jumpButton.anchoredPosition;
+        jumpButton.anchoredPosition = joystick.anchoredPosition;
+        joystick.anchoredPosition = tempRect;
+    }
 }
