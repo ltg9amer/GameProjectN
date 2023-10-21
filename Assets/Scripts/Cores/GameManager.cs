@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI checkpointText;
     private bool isPlay;
+    public bool IsPlay => isPlay;
     private bool controlReversed;
     public bool ControlReversed
     {
