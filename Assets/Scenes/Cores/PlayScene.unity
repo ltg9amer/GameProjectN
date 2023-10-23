@@ -601,7 +601,7 @@ PrefabInstance:
         type: 3}
       propertyPath: SceneCharacters.Array.data[0]
       value: 
-      objectReference: {fileID: 1500338536}
+      objectReference: {fileID: 0}
     - target: {fileID: 8186304419059209028, guid: a5eb890b5811ff244a61bc31e62dee05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7521,18 +7521,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebc96b03a319ec64596e770f7ed42bc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1500338536 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4492742682031890853, guid: 721f2c0d8f0db5646a6c4e967b81be93,
-    type: 3}
-  m_PrefabInstance: {fileID: 1029478590}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b470d1b161b2454590386135b7fd64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1500338538 stripped

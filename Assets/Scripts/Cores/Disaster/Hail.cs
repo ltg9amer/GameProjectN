@@ -13,6 +13,11 @@ public class Hail : Disaster
         StartCoroutine(TyphoonCoroutine());
     }
 
+    public override void StopDisaster()
+    {
+
+    }
+
     private IEnumerator TyphoonCoroutine()
     {
         yield return new WaitForSeconds(DisasterManager.instance.TyphoonDelay);

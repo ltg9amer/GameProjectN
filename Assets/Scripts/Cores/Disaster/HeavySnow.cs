@@ -8,4 +8,9 @@ public class HeavySnow : Disaster
     {
         //´« ³»¸®±â
     }
+
+    public override void StopDisaster()
+    {
+
+    }
 }

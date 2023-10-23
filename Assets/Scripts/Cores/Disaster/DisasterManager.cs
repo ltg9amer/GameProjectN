@@ -30,12 +30,11 @@ public class DisasterManager : MonoBehaviour
         {
             disaster = value;
 
-            disaster?.PlayDisaster();
+            disaster.onPlay?.Invoke();
         }
     }
-    private int jumpCount;
-    private float hailTimer;
-    private float heavySnowTimer;
+    private int hailCount;
+    private int heavySnowCount;
 
     private void Awake()
     {
@@ -50,28 +49,25 @@ public class DisasterManager : MonoBehaviour
         {
             disasterDictionary.Add(disaster.name, disaster);
         }
-
-        hailTimer = hailDelay;
-        heavySnowTimer = heavySnowDelay;
     }
 
     private void Update()
     {
-        if (jumpCount > 0 && jumpCount % 50 == 0)
+        if (GameManager.instance.JumpCount > 0 && GameManager.instance.JumpCount % 50 == 0)
         {
             Disaster = disasterDictionary["ColdWave"];
         }
 
-        if (hailTimer <= 0f)
+        if (GameManager.instance.PlayTime / hailDelay > hailCount)
         {
+            hailCount++;
             Disaster = disasterDictionary["Hail"];
-            hailTimer = hailDelay;
         }
 
-        if (heavySnowTimer <= 0f)
+        if (GameManager.instance.PlayTime / heavySnowDelay > heavySnowCount)
         {
+            heavySnowCount++;
             Disaster = disasterDictionary["HeavySnow"];
-            heavySnowTimer = heavySnowDelay;
         }
     }
 }

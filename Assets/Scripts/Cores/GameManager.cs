@@ -1,3 +1,4 @@
+using MoreMountains.CorgiEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,7 +9,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance;
-
     [SerializeField]
     private Switch controlToggleSwitch;
     [SerializeField]
@@ -17,6 +17,19 @@ public class GameManager : MonoBehaviour
     private Slider soundEffectsSlider;
     [SerializeField]
     private TextMeshProUGUI checkpointText;
+    private Transform corgiCharacter;
+    public Transform CorgiCharacter
+    {
+        get
+        {
+            return corgiCharacter;
+        }
+
+        set
+        {
+            CorgiCharacter = value;
+        }
+    }
     private bool isPlay;
     public bool IsPlay => isPlay;
     private bool controlReversed;
@@ -47,7 +60,10 @@ public class GameManager : MonoBehaviour
         }
     }
     private int currentStage;
+    private int jumpCount;
+    public int JumpCount => jumpCount;
     private float playTime;
+    public float PlayTime => playTime;
 
     private void Awake()
     {
@@ -56,10 +72,12 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
+        corgiCharacter = FindObjectOfType<Character>().transform;
         isPlay = SceneManager.GetActiveScene().name == "PlayScene";
         controlReversed = !(PlayerPrefs.GetInt("ControlReverse", 0) == 0);
         checkpointCount = PlayerPrefs.GetInt("Checkpoint", 1);
         deathCount = PlayerPrefs.GetInt("Death", 0);
+        jumpCount = PlayerPrefs.GetInt("Jump", 0);
         backgroundMusicSlider.value = PlayerPrefs.GetFloat("BackgroundMusic", 1f);
         soundEffectsSlider.value = PlayerPrefs.GetFloat("SoundEffects", 1f);
         playTime = PlayerPrefs.GetFloat("Time", 0f);
@@ -93,6 +111,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("ControlReverse", controlReversed ? 1 : 0);
         PlayerPrefs.SetInt("Checkpoint", checkpointCount);
         PlayerPrefs.SetInt("Death", deathCount);
+        PlayerPrefs.SetInt("Jump", jumpCount);
         PlayerPrefs.SetFloat("BackgroundMusic", backgroundMusicSlider.value);
         PlayerPrefs.SetFloat("SoundEffects", soundEffectsSlider.value);
 
@@ -112,6 +131,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("Checkpoint");
         PlayerPrefs.DeleteKey("Death");
+        PlayerPrefs.DeleteKey("Jump");
         PlayerPrefs.DeleteKey("Time");
 
         checkpointText.text = "체크 포인트: 1-1";

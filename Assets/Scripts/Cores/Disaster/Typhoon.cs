@@ -9,6 +9,11 @@ public class Typhoon : Disaster
         //ÅÂÇ³ ¼ÒÈ¯
     }
 
+    public override void StopDisaster()
+    {
+        StartCoroutine(TidalWaveCoroutine());
+    }
+
     private IEnumerator TidalWaveCoroutine()
     {
         yield return new WaitForSeconds(DisasterManager.instance.TidalWaveDelay);

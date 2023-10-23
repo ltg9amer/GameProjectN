@@ -8,4 +8,9 @@ public class TidalWave : Disaster
     {
         //해일 소환
     }
+
+    public override void StopDisaster()
+    {
+
+    }
 }

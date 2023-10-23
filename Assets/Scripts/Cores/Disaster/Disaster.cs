@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Disaster : MonoBehaviour
 {
-    private event Action onPlay;
+    public Action onPlay;
 
     public virtual void Awake()
     {
@@ -13,4 +13,6 @@ public abstract class Disaster : MonoBehaviour
     }
 
     public abstract void PlayDisaster();
+
+    public abstract void StopDisaster();
 }
