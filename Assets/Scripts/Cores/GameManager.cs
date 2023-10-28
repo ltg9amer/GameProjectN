@@ -17,8 +17,20 @@ public class GameManager : MonoBehaviour
     private Slider soundEffectsSlider;
     [SerializeField]
     private TextMeshProUGUI checkpointText;
-    private Transform corgiCharacter;
-    public Transform CorgiCharacter
+    public int jumpCount
+    {
+        get
+        {
+            return characterJump.jumpCount;
+        }
+
+        set
+        {
+            characterJump.jumpCount = value;
+        }
+    }
+    private Character corgiCharacter;
+    public Character CorgiCharacter
     {
         get
         {
@@ -27,9 +39,11 @@ public class GameManager : MonoBehaviour
 
         set
         {
-            CorgiCharacter = value;
+            corgiCharacter = value;
         }
     }
+    private CharacterJump characterJump;
+    public CharacterJump CharacterJump => characterJump;
     private bool isPlay;
     public bool IsPlay => isPlay;
     private bool controlReversed;
@@ -60,8 +74,6 @@ public class GameManager : MonoBehaviour
         }
     }
     private int currentStage;
-    private int jumpCount;
-    public int JumpCount => jumpCount;
     private float playTime;
     public float PlayTime => playTime;
 
@@ -72,16 +84,21 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
-        corgiCharacter = FindObjectOfType<Character>().transform;
         isPlay = SceneManager.GetActiveScene().name == "PlayScene";
         controlReversed = !(PlayerPrefs.GetInt("ControlReverse", 0) == 0);
         checkpointCount = PlayerPrefs.GetInt("Checkpoint", 1);
         deathCount = PlayerPrefs.GetInt("Death", 0);
-        jumpCount = PlayerPrefs.GetInt("Jump", 0);
         backgroundMusicSlider.value = PlayerPrefs.GetFloat("BackgroundMusic", 1f);
         soundEffectsSlider.value = PlayerPrefs.GetFloat("SoundEffects", 1f);
         playTime = PlayerPrefs.GetFloat("Time", 0f);
         currentStage = (checkpointCount - 1) / 3 + 1;
+
+        if (isPlay)
+        {
+            corgiCharacter = FindObjectOfType<Character>();
+            characterJump = corgiCharacter.FindAbility<CharacterJump>();
+            jumpCount = PlayerPrefs.GetInt("Jump", 0);
+        }
 
         if (controlReversed)
         {
@@ -111,12 +128,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("ControlReverse", controlReversed ? 1 : 0);
         PlayerPrefs.SetInt("Checkpoint", checkpointCount);
         PlayerPrefs.SetInt("Death", deathCount);
-        PlayerPrefs.SetInt("Jump", jumpCount);
         PlayerPrefs.SetFloat("BackgroundMusic", backgroundMusicSlider.value);
         PlayerPrefs.SetFloat("SoundEffects", soundEffectsSlider.value);
 
         if (isPlay)
         {
+            PlayerPrefs.SetInt("Jump", jumpCount);
             PlayerPrefs.SetFloat("Time", playTime);
         }
     }
@@ -136,6 +153,6 @@ public class GameManager : MonoBehaviour
 
         checkpointText.text = "체크 포인트: 1-1";
 
-        GameObject.Find("CanvasMenu").GetComponent<PauseMenu>().Continue();
+        GameObject.Find("SettingPopup").GetComponent<PauseMenu>().Continue();
     }
 }

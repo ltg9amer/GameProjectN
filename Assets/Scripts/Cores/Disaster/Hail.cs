@@ -9,8 +9,13 @@ public class Hail : Disaster
 
     public override void PlayDisaster()
     {
-        //우박 떨구기
+        Debug.Log("우박");
         StartCoroutine(TyphoonCoroutine());
+    }
+
+    public override void SetWarningPanelRectangle()
+    {
+
     }
 
     public override void StopDisaster()
@@ -22,9 +27,9 @@ public class Hail : Disaster
     {
         yield return new WaitForSeconds(DisasterManager.instance.TyphoonDelay);
 
-        if (Random.Range(0, 4) == 0)
+        if (Random.value < 0.25f)
         {
-            DisasterManager.instance.Disaster = DisasterManager.instance.DisasterDictionary["Typhoon"];
+            DisasterManager.instance.DisasterDictionary["Typhoon"]?.onPlay.Invoke();
         }
     }
 }

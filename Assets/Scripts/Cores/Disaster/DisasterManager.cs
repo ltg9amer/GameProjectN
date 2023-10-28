@@ -18,23 +18,8 @@ public class DisasterManager : MonoBehaviour
     public float TidalWaveDelay => tidalWaveDelay;
     private Dictionary<string, Disaster> disasterDictionary = new Dictionary<string, Disaster>();
     public Dictionary<string, Disaster> DisasterDictionary => disasterDictionary;
-    private Disaster disaster;
-    public Disaster Disaster
-    {
-        get
-        {
-            return disaster;
-        }
-
-        set
-        {
-            disaster = value;
-
-            disaster.onPlay?.Invoke();
-        }
-    }
-    private int hailCount;
-    private int heavySnowCount;
+    private int hailCount = 1;
+    private int heavySnowCount = 1;
 
     private void Awake()
     {
@@ -49,25 +34,29 @@ public class DisasterManager : MonoBehaviour
         {
             disasterDictionary.Add(disaster.name, disaster);
         }
+
+        GameManager.instance.jumpCount = 48;
     }
 
     private void Update()
     {
-        if (GameManager.instance.JumpCount > 0 && GameManager.instance.JumpCount % 50 == 0)
+        Debug.Log(GameManager.instance.jumpCount);
+
+        if (GameManager.instance.jumpCount > 0 && (GameManager.instance.jumpCount %= 50) == 0)
         {
-            Disaster = disasterDictionary["ColdWave"];
+            disasterDictionary["ColdWave"]?.onPlay.Invoke();
         }
 
         if (GameManager.instance.PlayTime / hailDelay > hailCount)
         {
             hailCount++;
-            Disaster = disasterDictionary["Hail"];
+            disasterDictionary["Hail"]?.onPlay.Invoke();
         }
 
         if (GameManager.instance.PlayTime / heavySnowDelay > heavySnowCount)
         {
             heavySnowCount++;
-            Disaster = disasterDictionary["HeavySnow"];
+            disasterDictionary["HeavySnow"]?.onPlay.Invoke();
         }
     }
 }

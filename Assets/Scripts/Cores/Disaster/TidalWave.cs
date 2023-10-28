@@ -6,7 +6,12 @@ public class TidalWave : Disaster
 {
     public override void PlayDisaster()
     {
-        //해일 소환
+        Debug.Log("해일");
+    }
+
+    public override void SetWarningPanelRectangle()
+    {
+
     }
 
     public override void StopDisaster()
