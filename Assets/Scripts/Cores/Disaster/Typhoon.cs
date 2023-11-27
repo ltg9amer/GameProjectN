@@ -6,13 +6,26 @@ public class Typhoon : Disaster
 {
     public override void PlayDisaster()
     {
-        //ÅÂÇ³ ¼ÒÈ¯
+        Debug.Log("ÅÂÇ³");
+    }
+
+    public override void SetWarningPanelRectangle()
+    {
+
+    }
+
+    public override void StopDisaster()
+    {
+        StartCoroutine(TidalWaveCoroutine());
     }
 
     private IEnumerator TidalWaveCoroutine()
     {
         yield return new WaitForSeconds(DisasterManager.instance.TidalWaveDelay);
 
-        DisasterManager.instance.Disaster = DisasterManager.instance.DisasterDictionary["TidalWave"];
+        if (Random.value < 0.5f)
+        {
+            DisasterManager.instance.DisasterDictionary["TidalWave"]?.onPlay.Invoke();
+        }
     }
 }

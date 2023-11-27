@@ -575,7 +575,7 @@ namespace MoreMountains.CorgiEngine
 			if (_animator != null)
 			{
 				_animator.SetTrigger("Death");
-			}
+            }
 
 			if (OnDeath != null)
 			{

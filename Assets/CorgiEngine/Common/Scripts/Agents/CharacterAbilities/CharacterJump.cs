@@ -111,6 +111,8 @@ namespace MoreMountains.CorgiEngine
 		protected bool _coyoteTime = false;
 		protected bool _inputBuffer = false;
 		protected bool _jumpingDownFromOneWayPlatform = false;
+		[HideInInspector]
+		public int jumpCount;
                 
 		// animation parameters
 		protected const string _jumpingAnimationParameterName = "Jumping";
@@ -523,6 +525,7 @@ namespace MoreMountains.CorgiEngine
 			// we make the character jump
 			_controller.SetVerticalForce(Mathf.Sqrt( 2f * JumpHeight * Mathf.Abs(_controller.Parameters.Gravity) ));
 			JumpHappenedThisFrame = true;
+			jumpCount++;
 		}
 
 		/// <summary>

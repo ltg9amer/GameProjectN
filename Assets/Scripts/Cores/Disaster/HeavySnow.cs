@@ -6,6 +6,16 @@ public class HeavySnow : Disaster
 {
     public override void PlayDisaster()
     {
-        //´« ³»¸®±â
+        Debug.Log("Æø¼³");
+    }
+
+    public override void SetWarningPanelRectangle()
+    {
+
+    }
+
+    public override void StopDisaster()
+    {
+
     }
 }
