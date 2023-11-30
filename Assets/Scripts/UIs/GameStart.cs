@@ -14,7 +14,7 @@ public class GameStart : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.anyKeyDown && !IsPointerOverUIObject()) || (Input.touchCount > 0 && !IsTouchOverUIObject()))
+        if ((Input.anyKeyDown && !IsPointerOverUIObject()) || (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began && !IsTouchOverUIObject()))
         {
             loadSceneEvent?.Invoke();
         }
@@ -36,7 +36,7 @@ public class GameStart : MonoBehaviour
     private bool IsTouchOverUIObject()
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
+        eventDataCurrentPosition.position = new Vector2(Input.GetTouch(0).position.x, Input.touches[0].position.y);
         List<RaycastResult> results = new List<RaycastResult>();
 
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);

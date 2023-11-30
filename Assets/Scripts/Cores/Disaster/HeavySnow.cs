@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class HeavySnow : Disaster
 {
-    public override void PlayDisaster()
+    public override IEnumerator PlayDisaster()
     {
+        yield return null;
+
         Debug.Log("Æø¼³");
-    }
-
-    public override void SetWarningPanelRectangle()
-    {
-
     }
 
     public override void StopDisaster()

@@ -42,8 +42,12 @@ public class GameManager : MonoBehaviour
             corgiCharacter = value;
         }
     }
+    private CorgiController controller;
+    public CorgiController Controller => controller;
     private CharacterJump characterJump;
     public CharacterJump CharacterJump => characterJump;
+    private CharacterHorizontalMovement horizontalMovement;
+    public CharacterHorizontalMovement HorizontalMovement => horizontalMovement;
     private bool isPlay;
     public bool IsPlay => isPlay;
     private bool controlReversed;
@@ -96,7 +100,9 @@ public class GameManager : MonoBehaviour
         if (isPlay)
         {
             corgiCharacter = FindObjectOfType<Character>();
+            controller = corgiCharacter.GetComponent<CorgiController>();
             characterJump = corgiCharacter.FindAbility<CharacterJump>();
+            horizontalMovement = corgiCharacter.FindAbility<CharacterHorizontalMovement>();
             jumpCount = PlayerPrefs.GetInt("Jump", 0);
         }
 
@@ -115,11 +121,11 @@ public class GameManager : MonoBehaviour
         if (isPlay)
         {
             playTime += Time.deltaTime;
-            checkpointText.text = $"체크 포인트: {currentStage}-{checkpointCount % currentStage + 1} <alpha=#66> | <alpha=#FF> {deathCount}회 사망 <alpha=#66> | <alpha=#FF> {(int)playTime / 60:D2}:{(int)playTime % 60:D2}";
+            checkpointText.text = $"체크 포인트: {checkpointCount} <alpha=#66> | <alpha=#FF> {deathCount}회 사망 <alpha=#66> | <alpha=#FF> {(int)playTime / 60:D2}:{(int)playTime % 60:D2}";
         }
         else
         {
-            checkpointText.text = $"체크 포인트: {currentStage}-{checkpointCount % currentStage + 1}";
+            checkpointText.text = $"체크 포인트: {checkpointCount}";
         }
     }
 
@@ -136,12 +142,13 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Jump", jumpCount);
             PlayerPrefs.SetFloat("Time", playTime);
         }
+
+        PlayerPrefs.Save();
     }
 
     public void ReachCheckpoint()
     {
         checkpointCount++;
-        currentStage = (checkpointCount - 1) / 3 + 1;
     }
 
     public void ResetButton()
@@ -151,7 +158,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteKey("Jump");
         PlayerPrefs.DeleteKey("Time");
 
-        checkpointText.text = "체크 포인트: 1-1";
+        checkpointText.text = "체크 포인트: 1";
 
         GameObject.Find("SettingPopup").GetComponent<PauseMenu>().Continue();
     }

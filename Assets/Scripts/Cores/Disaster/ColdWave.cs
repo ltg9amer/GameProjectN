@@ -11,7 +11,6 @@ public class ColdWave : Disaster
     private float coldWaveLimitTime = 3f;
     private CharacterHorizontalMovement horizontalMovement;
     private bool frozen = false;
-    private bool isSurvived = false;
     private int touchCount;
     private float coldWaveTimer;
 
@@ -24,19 +23,15 @@ public class ColdWave : Disaster
 
         coldWaveTimer -= Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began))
         {
             touchCount++;
         }
 
         if (touchCount >= requireTouchCount)
         {
-            isSurvived = true;
             touchCount = 0;
-        }
 
-        if (isSurvived)
-        {
             StopDisaster();
         }
         else if (coldWaveTimer <= 0f)
@@ -47,7 +42,7 @@ public class ColdWave : Disaster
         }
     }
 
-    public override void PlayDisaster()
+    public override IEnumerator PlayDisaster()
     {
         if (!horizontalMovement)
         {
@@ -59,14 +54,10 @@ public class ColdWave : Disaster
 
         GameManager.instance.CorgiCharacter._animator.enabled = false;
         frozen = true;
-        isSurvived = false;
         touchCount = 0;
         coldWaveTimer = coldWaveLimitTime;
-    }
 
-    public override void SetWarningPanelRectangle()
-    {
-
+        yield return null;
     }
 
     public override void StopDisaster()

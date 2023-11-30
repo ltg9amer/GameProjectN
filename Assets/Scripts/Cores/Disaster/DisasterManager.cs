@@ -40,8 +40,6 @@ public class DisasterManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(GameManager.instance.jumpCount);
-
         if (GameManager.instance.jumpCount > 0 && (GameManager.instance.jumpCount %= 50) == 0)
         {
             disasterDictionary["ColdWave"]?.onPlay.Invoke();

@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class TidalWave : Disaster
 {
-    public override void PlayDisaster()
+    public override IEnumerator PlayDisaster()
     {
+        yield return null;
+
         Debug.Log("«ÿ¿œ");
-    }
-
-    public override void SetWarningPanelRectangle()
-    {
-
     }
 
     public override void StopDisaster()
