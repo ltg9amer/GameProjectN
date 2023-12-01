@@ -2,20 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavySnow : Disaster
+public class HeavySnow : Disaster, IDisaster
 {
-    public override void PlayDisaster()
-    {
-        Debug.Log("Æø¼³");
-    }
+    [SerializeField]
+    private GameObject warningPanel;
+    public GameObject WarningPanel => warningPanel;
+    private bool isFall;
 
-    public override void SetWarningPanelRectangle()
+    private void Update()
     {
+        if (!isFall)
+        {
+            return;
+        }
 
+        GameManager.instance.HorizontalMovement.MovementSpeed = Mathf.Min(GameManager.instance.HorizontalMovement.MovementSpeed, GameManager.instance.HorizontalMovement.WalkSpeed * 0.5f);
     }
 
     public override void StopDisaster()
     {
+        isFall = false;
+        GameManager.instance.HorizontalMovement.MovementSpeed = GameManager.instance.HorizontalMovement.WalkSpeed;
 
+        StartCoroutine(TidalWaveCoroutine());
+    }
+
+    public override IEnumerator PlayDisaster()
+    {
+        yield return StartCoroutine((this as IDisaster).BlinkWarningPanel());
+
+        isFall = true;
+
+        yield return new WaitForSeconds(7.5f);
+
+        StopDisaster();
+    }
+
+    private IEnumerator TidalWaveCoroutine()
+    {
+        yield return new WaitForSeconds(DisasterManager.instance.TidalWaveDelay);
+
+        if (Random.value <= 0.5f)
+        {
+            DisasterManager.instance.DisasterDictionary["TidalWave"]?.onPlay.Invoke();
+        }
     }
 }

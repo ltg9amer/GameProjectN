@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class TidalWave : Disaster
 {
-    public override void PlayDisaster()
-    {
-        Debug.Log("«ÿ¿œ");
-    }
+    [SerializeField]
+    private TidalWaveObject tidalWaveObject;
+    [SerializeField]
+    private float xOffset;
+    private Vector3 originalScale;
 
-    public override void SetWarningPanelRectangle()
+    public override IEnumerator PlayDisaster()
     {
+        originalScale = tidalWaveObject.transform.localScale;
+        tidalWaveObject.transform.position = new Vector3(GameManager.instance.CorgiCharacter.transform.position.x + xOffset, 0f);
+        tidalWaveObject.transform.localScale *= 1f + Random.Range(0, 4) * 0.5f;
 
+        tidalWaveObject.gameObject.SetActive(true);
+
+        yield return StartCoroutine(tidalWaveObject.PlayDisaster());
+
+        StopDisaster();
     }
 
     public override void StopDisaster()
     {
-
+        tidalWaveObject.transform.localScale = originalScale;
     }
 }

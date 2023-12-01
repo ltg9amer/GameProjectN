@@ -40,7 +40,10 @@ public class DisasterManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(GameManager.instance.jumpCount);
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            disasterDictionary["Typhoon"]?.onPlay.Invoke();
+        }
 
         if (GameManager.instance.jumpCount > 0 && (GameManager.instance.jumpCount %= 50) == 0)
         {

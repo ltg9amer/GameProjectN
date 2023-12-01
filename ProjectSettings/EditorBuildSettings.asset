@@ -6,12 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Cores/SplashScene.unity
+    guid: d5cbb36937f74ea4a86d0b36abf59db0
+  - enabled: 1
     path: Assets/Scenes/Cores/TitleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Cores/LoadingScene.unity
+    guid: 696383c018084b947a73bb8fb25cee6e
+  - enabled: 1
+    path: Assets/Scenes/Cores/PrologueScene.unity
+    guid: 6bba2ea6d46eea046abe8d826fe8f941
   - enabled: 1
     path: Assets/Scenes/Cores/PlayScene.unity
     guid: 5f89c935cd26abe48beed152ec447d84
   - enabled: 1
-    path: Assets/CorgiEngine/ThirdParty/MoreMountains/MMTools/Tools/MMSceneLoading/LoadingScreens/LoadingScreen.unity
-    guid: 888394d52616e5e42b3b54c3f2bbd3eb
+    path: Assets/Scenes/Cores/EndingScene.unity
+    guid: ab4840dcca9be2047a1e2e3107c7091c
   m_configObjects: {}
