@@ -23,6 +23,8 @@ public class HeavySnow : Disaster, IDisaster
     {
         isFall = false;
         GameManager.instance.HorizontalMovement.MovementSpeed = GameManager.instance.HorizontalMovement.WalkSpeed;
+
+        StartCoroutine(TidalWaveCoroutine());
     }
 
     public override IEnumerator PlayDisaster()
@@ -34,5 +36,15 @@ public class HeavySnow : Disaster, IDisaster
         yield return new WaitForSeconds(7.5f);
 
         StopDisaster();
+    }
+
+    private IEnumerator TidalWaveCoroutine()
+    {
+        yield return new WaitForSeconds(DisasterManager.instance.TidalWaveDelay);
+
+        if (Random.value <= 0.5f)
+        {
+            DisasterManager.instance.DisasterDictionary["TidalWave"]?.onPlay.Invoke();
+        }
     }
 }

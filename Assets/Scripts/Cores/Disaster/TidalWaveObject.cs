@@ -40,6 +40,14 @@ public class TidalWaveObject : MonoBehaviour, IDisaster
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out Character character))
+        {
+            GameManager.instance.HorizontalMovement.MovementSpeed = GameManager.instance.HorizontalMovement.WalkSpeed;
+        }
+    }
+
     public IEnumerator PlayDisaster()
     {
         yield return StartCoroutine((this as IDisaster).BlinkWarningPanel());

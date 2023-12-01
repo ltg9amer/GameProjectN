@@ -28,16 +28,6 @@ public class Typhoon : Disaster
 
     public override void StopDisaster()
     {
-        StartCoroutine(TidalWaveCoroutine());
-    }
 
-    private IEnumerator TidalWaveCoroutine()
-    {
-        yield return new WaitForSeconds(DisasterManager.instance.TidalWaveDelay);
-
-        if (Random.value <= 0.5f)
-        {
-            DisasterManager.instance.DisasterDictionary["TidalWave"]?.onPlay.Invoke();
-        }
     }
 }

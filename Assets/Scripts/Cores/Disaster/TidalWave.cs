@@ -13,7 +13,7 @@ public class TidalWave : Disaster
     public override IEnumerator PlayDisaster()
     {
         originalScale = tidalWaveObject.transform.localScale;
-        tidalWaveObject.transform.position = GameManager.instance.CorgiCharacter.transform.position + new Vector3(xOffset, 0f);
+        tidalWaveObject.transform.position = new Vector3(GameManager.instance.CorgiCharacter.transform.position.x + xOffset, 0f);
         tidalWaveObject.transform.localScale *= 1f + Random.Range(0, 4) * 0.5f;
 
         tidalWaveObject.gameObject.SetActive(true);

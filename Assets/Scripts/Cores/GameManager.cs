@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private Slider soundEffectsSlider;
     [SerializeField]
     private TextMeshProUGUI checkpointText;
+    [SerializeField]
+    private TextMeshProUGUI statisticsText;
     public int jumpCount
     {
         get
@@ -77,7 +79,6 @@ public class GameManager : MonoBehaviour
             deathCount = value;
         }
     }
-    private int currentStage;
     private float playTime;
     public float PlayTime => playTime;
 
@@ -95,7 +96,6 @@ public class GameManager : MonoBehaviour
         backgroundMusicSlider.value = PlayerPrefs.GetFloat("BackgroundMusic", 1f);
         soundEffectsSlider.value = PlayerPrefs.GetFloat("SoundEffects", 1f);
         playTime = PlayerPrefs.GetFloat("Time", 0f);
-        currentStage = (checkpointCount - 1) / 3 + 1;
 
         if (isPlay)
         {
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         if (isPlay)
         {
             playTime += Time.deltaTime;
-            checkpointText.text = $"체크 포인트: {checkpointCount} <alpha=#66> | <alpha=#FF> {deathCount}회 사망 <alpha=#66> | <alpha=#FF> {(int)playTime / 60:D2}:{(int)playTime % 60:D2}";
+            checkpointText.text = statisticsText.text = $"체크 포인트: {checkpointCount} <alpha=#66> | <alpha=#FF> {deathCount}회 사망 <alpha=#66> | <alpha=#FF> {(int)playTime / 60:D2}:{(int)playTime % 60:D2}";
         }
         else
         {

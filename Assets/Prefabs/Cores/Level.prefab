@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 7.5
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -555,9 +555,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4587128728192231524}
   - component: {fileID: 7776609505652035243}
-  - component: {fileID: 2642980429028467184}
-  - component: {fileID: 6915701766898315864}
-  - component: {fileID: 3283653043512865915}
+  - component: {fileID: 1583435375154481560}
+  - component: {fileID: 460945554097917596}
+  - component: {fileID: 370399568873975076}
   m_Layer: 21
   m_Name: Manager
   m_TagString: Untagged
@@ -574,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 6372961213107017836}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 95, y: 17.5, z: 0}
+  m_LocalPosition: {x: 100, y: 17.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -636,8 +636,8 @@ MonoBehaviour:
   ResetPointsOnRestart: 1
   BoundsMode: 0
   LevelBounds:
-    m_Center: {x: 95, y: 17.5, z: 0}
-    m_Extent: {x: 100, y: 27.5, z: 0}
+    m_Center: {x: 100, y: 17.5, z: 0}
+    m_Extent: {x: 105, y: 27.5, z: 0}
   ConvertToColliderBoundsButton: 0
   LoadingSceneMode: 1
   LoadingSceneName: LoadingScreen
@@ -676,7 +676,7 @@ MonoBehaviour:
     UnloadMethod: 2
     AntiSpillSceneName: 
   SetPlayerAsFeedbackRangeCenter: 0
---- !u!50 &2642980429028467184
+--- !u!50 &1583435375154481560
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -703,7 +703,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6915701766898315864
+--- !u!61 &460945554097917596
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -746,9 +746,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 200, y: 55}
+  m_Size: {x: 210, y: 55}
   m_EdgeRadius: 0
---- !u!66 &3283653043512865915
+--- !u!66 &370399568873975076
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -785,22 +785,22 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 6915701766898315864}
+  - m_Collider: {fileID: 460945554097917596}
     m_ColliderPaths:
-    - - X: 1000000000
+    - - X: 1050000000
         Y: 275000000
-      - X: -1000000000
+      - X: -1050000000
         Y: 275000000
-      - X: -1000000000
+      - X: -1050000000
         Y: -275000000
-      - X: 1000000000
+      - X: 1050000000
         Y: -275000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 99.99997, y: -27.5}
-      - {x: 99.99997, y: 27.5}
-      - {x: -100, y: 27.499971}
-      - {x: -99.99997, y: -27.5}
+    - - {x: 104.99997, y: -27.5}
+      - {x: 104.99997, y: 27.5}
+      - {x: -105, y: 27.499971}
+      - {x: -104.99997, y: -27.5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -883,8 +883,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -5, y: -5}
       - {x: -5, y: 45}
-      - {x: 195, y: 45}
-      - {x: 195, y: -5}
+      - {x: 205, y: 45}
+      - {x: 205, y: -5}
   m_UseDelaunayMesh: 0
 --- !u!1 &8330799260701485693
 GameObject:

@@ -6,8 +6,12 @@ using UnityEngine;
 public class ColdWave : Disaster, IDisaster
 {
     [SerializeField]
+    private List<GameObject> coldWaveScreens;
+    [SerializeField]
     private GameObject warningPanel;
     public GameObject WarningPanel => warningPanel;
+    [SerializeField]
+    private SpriteRenderer frozenRenderer;
     [SerializeField]
     private int requireTouchCount = 30;
     [SerializeField]
@@ -33,11 +37,16 @@ public class ColdWave : Disaster, IDisaster
 
     public override void StopDisaster()
     {
+        for (int i = 0; i < coldWaveScreens.Count; ++i)
+        {
+            coldWaveScreens[i].SetActive(false);
+        }
+
         GameManager.instance.HorizontalMovement.PermitAbility(true);
         GameManager.instance.CharacterJump.PermitAbility(true);
 
         GameManager.instance.CorgiCharacter._animator.enabled = true;
-        frozen = false;
+        frozenRenderer.enabled = frozen = false;
         touchCount = 0;
     }
 
@@ -49,13 +58,22 @@ public class ColdWave : Disaster, IDisaster
         GameManager.instance.CharacterJump.PermitAbility(false);
 
         GameManager.instance.CorgiCharacter._animator.enabled = false;
-        frozen = true;
+        frozenRenderer.enabled = frozen = true;
 
-        yield return new WaitForSeconds(coldWaveLimitTime);
+        for (int i = 0; i < coldWaveScreens.Count; ++i)
+        {
+            yield return new WaitForSeconds(coldWaveLimitTime / (coldWaveScreens.Count + 1));
+
+            if (frozen)
+            {
+                coldWaveScreens[i].SetActive(true);
+            }
+        }
+
+        yield return new WaitForSeconds(coldWaveLimitTime / (coldWaveScreens.Count + 1));
 
         if (frozen)
         {
-            StopDisaster();
             GameManager.instance.CorgiCharacter.CharacterHealth.Kill();
             GameManager.instance.CorgiCharacter._animator.SetTrigger("Death");
         }
