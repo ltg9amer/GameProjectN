@@ -8,6 +8,7 @@ public class HailObject : MonoBehaviour, IDisaster
 {
     [SerializeField]
     private GameObject warningPanel;
+    public GameObject WarningPanel => warningPanel;
     [SerializeField]
     private float lifeTime;
     [SerializeField]
@@ -21,7 +22,7 @@ public class HailObject : MonoBehaviour, IDisaster
             return;
         }
 
-        transform.position += ((transform.position + new Vector3(-0.5f, -1f)) - transform.position) * fallSpeed * Time.deltaTime;
+        transform.position += (transform.position + new Vector3(-0.5f, -1f) - transform.position) * fallSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,31 +37,9 @@ public class HailObject : MonoBehaviour, IDisaster
         }
     }
 
-    public IEnumerator BlinkWarningPanel()
-    {
-        // ±ôºýÀÌ´Â °æ°í Ç¥½Ã
-        /*for (int i = 0; i < 3; ++i)
-        {
-            warningPanel.SetActive(true);
-
-            yield return new WaitForSeconds(0.75f);
-
-            warningPanel.SetActive(false);
-
-            yield return new WaitForSeconds(0.75f);
-        }*/
-
-        // ÂªÀº °æ°í Ç¥½Ã
-        warningPanel.SetActive(true);
-
-        yield return new WaitForSeconds(0.75f);
-
-        warningPanel.SetActive(false);
-    }
-
     public IEnumerator PlayDisaster()
     {
-        yield return StartCoroutine(BlinkWarningPanel());
+        yield return StartCoroutine((this as IDisaster).BlinkWarningPanel());
 
         isFalling = true;
 

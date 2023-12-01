@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warningPanel: {fileID: 2072387931626684094}
-  lifeTime: 0
+  lifeTime: 10
   sweepSpeed: 12
 --- !u!114 &470486866592288158
 MonoBehaviour:

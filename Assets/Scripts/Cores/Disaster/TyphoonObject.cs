@@ -8,6 +8,7 @@ public class TyphoonObject : MonoBehaviour, IDisaster
 {
     [SerializeField]
     private GameObject warningPanel;
+    public GameObject WarningPanel => warningPanel;
     [SerializeField]
     private float lifeTime;
     [SerializeField]
@@ -29,7 +30,6 @@ public class TyphoonObject : MonoBehaviour, IDisaster
             return;
         }
 
-        GameManager.instance.HorizontalMovement.MovementSpeed = Mathf.Min(GameManager.instance.HorizontalMovement.MovementSpeed, GameManager.instance.HorizontalMovement.WalkSpeed * 0.1f);
         Vector3 destination = GameManager.instance.CorgiCharacter.transform.position + Vector3.down * (transform.localScale.y - transform.localScale.y * 0.2f - 1f);
         destination.y = Mathf.Clamp(destination.y, 0f, float.MaxValue);
         transform.position += (destination - transform.position) * blowSpeed * Time.deltaTime;
@@ -59,6 +59,8 @@ public class TyphoonObject : MonoBehaviour, IDisaster
 
         if (collision.TryGetComponent(out Character character))
         {
+            GameManager.instance.HorizontalMovement.MovementSpeed = Mathf.Min(GameManager.instance.HorizontalMovement.MovementSpeed, GameManager.instance.HorizontalMovement.WalkSpeed * 0.1f);
+            
             if (sequence == null || sequence.IsComplete())
             {
                 sequence = DOTween.Sequence()
@@ -72,31 +74,9 @@ public class TyphoonObject : MonoBehaviour, IDisaster
         }
     }
 
-    public IEnumerator BlinkWarningPanel()
-    {
-        // ±ôºýÀÌ´Â °æ°í Ç¥½Ã
-        /*for (int i = 0; i < 3; ++i)
-        {
-            warningPanel.SetActive(true);
-
-            yield return new WaitForSeconds(0.75f);
-
-            warningPanel.SetActive(false);
-
-            yield return new WaitForSeconds(0.75f);
-        }*/
-
-        // ÂªÀº °æ°í Ç¥½Ã
-        warningPanel.SetActive(true);
-
-        yield return new WaitForSeconds(0.75f);
-
-        warningPanel.SetActive(false);
-    }
-
     public IEnumerator PlayDisaster()
     {
-        yield return StartCoroutine(BlinkWarningPanel());
+        yield return StartCoroutine((this as IDisaster).BlinkWarningPanel());
 
         spriteRenderer.enabled = isBlowing = true;
 

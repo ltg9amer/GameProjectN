@@ -12,9 +12,9 @@ public abstract class Disaster : MonoBehaviour
         onPlay += StartDisaster;
     }
 
-    public abstract IEnumerator PlayDisaster();
-
     public abstract void StopDisaster();
+
+    public abstract IEnumerator PlayDisaster();
 
     private void StartDisaster()
     {

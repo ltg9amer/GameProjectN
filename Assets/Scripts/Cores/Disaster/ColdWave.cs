@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColdWave : Disaster
+public class ColdWave : Disaster, IDisaster
 {
+    [SerializeField]
+    private GameObject warningPanel;
+    public GameObject WarningPanel => warningPanel;
     [SerializeField]
     private int requireTouchCount = 30;
     [SerializeField]
     private float coldWaveLimitTime = 3f;
-    private CharacterHorizontalMovement horizontalMovement;
-    private bool frozen = false;
+    private bool frozen;
     private int touchCount;
-    private float coldWaveTimer;
 
     private void Update()
     {
@@ -21,51 +22,42 @@ public class ColdWave : Disaster
             return;
         }
 
-        coldWaveTimer -= Time.deltaTime;
-
         if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began))
         {
-            touchCount++;
+            if (++touchCount >= requireTouchCount)
+            {
+                StopDisaster();
+            }
         }
+    }
 
-        if (touchCount >= requireTouchCount)
-        {
-            touchCount = 0;
+    public override void StopDisaster()
+    {
+        GameManager.instance.HorizontalMovement.PermitAbility(true);
+        GameManager.instance.CharacterJump.PermitAbility(true);
 
-            StopDisaster();
-        }
-        else if (coldWaveTimer <= 0f)
+        GameManager.instance.CorgiCharacter._animator.enabled = true;
+        frozen = false;
+        touchCount = 0;
+    }
+
+    public override IEnumerator PlayDisaster()
+    {
+        yield return StartCoroutine((this as IDisaster).BlinkWarningPanel());
+
+        GameManager.instance.HorizontalMovement.PermitAbility(false);
+        GameManager.instance.CharacterJump.PermitAbility(false);
+
+        GameManager.instance.CorgiCharacter._animator.enabled = false;
+        frozen = true;
+
+        yield return new WaitForSeconds(coldWaveLimitTime);
+
+        if (frozen)
         {
             StopDisaster();
             GameManager.instance.CorgiCharacter.CharacterHealth.Kill();
             GameManager.instance.CorgiCharacter._animator.SetTrigger("Death");
         }
-    }
-
-    public override IEnumerator PlayDisaster()
-    {
-        if (!horizontalMovement)
-        {
-            horizontalMovement = GameManager.instance.CorgiCharacter.FindAbility<CharacterHorizontalMovement>();
-        }
-
-        horizontalMovement.PermitAbility(false);
-        GameManager.instance.CharacterJump.PermitAbility(false);
-
-        GameManager.instance.CorgiCharacter._animator.enabled = false;
-        frozen = true;
-        touchCount = 0;
-        coldWaveTimer = coldWaveLimitTime;
-
-        yield return null;
-    }
-
-    public override void StopDisaster()
-    {
-        horizontalMovement.PermitAbility(true);
-        GameManager.instance.CharacterJump.PermitAbility(true);
-
-        GameManager.instance.CorgiCharacter._animator.enabled = true;
-        frozen = false;
     }
 }

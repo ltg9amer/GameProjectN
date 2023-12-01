@@ -255,6 +255,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarningPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 5978286701195238007, guid: f633cb5fa19063043a5513f6fb8750b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
