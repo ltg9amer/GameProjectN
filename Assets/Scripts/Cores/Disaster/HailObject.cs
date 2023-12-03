@@ -1,5 +1,4 @@
 using MoreMountains.CorgiEngine;
-using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +12,11 @@ public class HailObject : MonoBehaviour, IDisaster
     private float lifeTime;
     [SerializeField]
     private float fallSpeed;
-    private bool isFalling;
+    private bool isFall;
 
     private void Update()
     {
-        if (!isFalling)
+        if (!isFall)
         {
             return;
         }
@@ -30,9 +29,6 @@ public class HailObject : MonoBehaviour, IDisaster
         if (collision.TryGetComponent(out Character character))
         {
             character.CharacterHealth.Kill();
-
-            GameManager.instance.DeathCount++;
-            
             GameManager.instance.CorgiCharacter._animator.SetTrigger("Death");
         }
     }
@@ -41,11 +37,11 @@ public class HailObject : MonoBehaviour, IDisaster
     {
         yield return StartCoroutine((this as IDisaster).BlinkWarningPanel());
 
-        isFalling = true;
+        isFall = true;
 
         yield return new WaitForSeconds(lifeTime);
 
-        isFalling = false;
+        isFall = false;
 
         gameObject.SetActive(false);
     }

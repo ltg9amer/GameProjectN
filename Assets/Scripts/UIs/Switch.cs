@@ -26,7 +26,7 @@ public class Switch : MonoBehaviour
             ButtonSwap();
         }
 
-        GameManager.instance.ControlReversed = isToggleOn;
+        GameManager.instance.currentUserData.settingData.ControlReversed = isToggleOn;
     }
 
     public void Off()
@@ -41,7 +41,7 @@ public class Switch : MonoBehaviour
             ButtonSwap();
         }
 
-        GameManager.instance.ControlReversed = isToggleOn;
+        GameManager.instance.currentUserData.settingData.ControlReversed = isToggleOn;
     }
 
     private void ButtonSwap()

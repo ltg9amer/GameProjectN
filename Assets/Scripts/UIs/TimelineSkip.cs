@@ -23,10 +23,16 @@ public class TimelineSkip : MonoBehaviour
     {
         if (!skipButton.enabled && (Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)))
         {
-            skipButton.enabled = true;
+            for (int i = 0; i < director.Count; ++i)
+            {
+                if (director[i].state == PlayState.Playing)
+                {
+                    skipButton.enabled = true;
 
-            skipButton.DOFade(1f, 1f)
-                .OnComplete(() => StartCoroutine(SkipButtonLife()));
+                    skipButton.DOFade(1f, 1f)
+                        .OnComplete(() => StartCoroutine(SkipButtonLife()));
+                }
+            }
         }
     }
 
@@ -36,7 +42,10 @@ public class TimelineSkip : MonoBehaviour
         {
             await Task.Delay(1);
 
-            director[i].time = skipTimeFrame[i] / 60f;
+            if (director[i].state == PlayState.Playing)
+            {
+                director[i].time = skipTimeFrame[i] / 60f;
+            }
         }
     }
 

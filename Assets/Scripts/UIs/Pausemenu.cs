@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-	public GameObject PausePanel;
+    public GameObject PausePanel;
 
-	public void Pause()
-	{
-		PausePanel.SetActive(true);
+    public void Pause()
+    {
+        PausePanel.SetActive(true);
 
-		Time.timeScale = 0;
-	}
+        if (GameManager.instance.IsPlay)
+        {
+            Time.timeScale = 0;
+        }
+    }
 
-	public void Continue()
-	{
-		PausePanel.SetActive(false);
+    public void Continue()
+    {
+        PausePanel.SetActive(false);
 
-		Time.timeScale = 1;
-	}
+        if (GameManager.instance.IsPlay)
+        {
+            Time.timeScale = 1;
+        }
+    }
 }

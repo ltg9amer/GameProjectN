@@ -258,6 +258,7 @@ namespace MoreMountains.Tools
 		/// </summary>
 		public virtual void SetNeutralPosition()
 		{
+			Debug.Log(_knobTransform == null);
 			_neutralPosition = _knobTransform.position;
 		}
 

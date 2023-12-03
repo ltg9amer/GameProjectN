@@ -5,25 +5,20 @@ using UnityEngine;
 public class Typhoon : Disaster
 {
     [SerializeField]
-    private List<TyphoonObject> typhoonObjects;
+    private TyphoonObject typhoonObject;
 
     public override IEnumerator PlayDisaster()
     {
-        for (int i = 0; i < Random.Range(1, typhoonObjects.Count + 1); ++i)
+        typhoonObject.transform.position = GameManager.instance.CorgiCharacter.transform.position + (Vector3)(Random.insideUnitCircle * 10f);
+
+        if (typhoonObject.transform.position.y <= 0f)
         {
-            typhoonObjects[i].transform.position = GameManager.instance.CorgiCharacter.transform.position + (Vector3)(Random.insideUnitCircle * 10f);
-
-            if (typhoonObjects[i].transform.position.y <= 0f)
-            {
-                typhoonObjects[i].transform.position += Vector3.up * 10f;
-            }
-
-            typhoonObjects[i].gameObject.SetActive(true);
-
-            yield return StartCoroutine(typhoonObjects[i].PlayDisaster());
+            typhoonObject.transform.position += Vector3.up * 10f;
         }
 
-        StopDisaster();
+        typhoonObject.gameObject.SetActive(true);
+
+        yield return StartCoroutine(typhoonObject.PlayDisaster());
     }
 
     public override void StopDisaster()

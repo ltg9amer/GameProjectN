@@ -74,6 +74,7 @@ public class ColdWave : Disaster, IDisaster
 
         if (frozen)
         {
+            StopDisaster();
             GameManager.instance.CorgiCharacter.CharacterHealth.Kill();
             GameManager.instance.CorgiCharacter._animator.SetTrigger("Death");
         }

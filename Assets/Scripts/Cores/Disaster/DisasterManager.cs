@@ -34,29 +34,22 @@ public class DisasterManager : MonoBehaviour
         {
             disasterDictionary.Add(disaster.name, disaster);
         }
-
-        GameManager.instance.jumpCount = 48;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            disasterDictionary["Typhoon"]?.onPlay.Invoke();
-        }
-
-        if (GameManager.instance.jumpCount > 0 && (GameManager.instance.jumpCount %= 50) == 0)
+        if (GameManager.instance.CharacterJump.jumpCount > 0 && (GameManager.instance.CharacterJump.jumpCount %= 50) == 0)
         {
             disasterDictionary["ColdWave"]?.onPlay.Invoke();
         }
 
-        if (GameManager.instance.PlayTime / hailDelay > hailCount)
+        if (GameManager.instance.currentUserData.PlayTime / hailDelay > hailCount)
         {
             hailCount++;
             disasterDictionary["Hail"]?.onPlay.Invoke();
         }
 
-        if (GameManager.instance.PlayTime / heavySnowDelay > heavySnowCount)
+        if (GameManager.instance.currentUserData.PlayTime / heavySnowDelay > heavySnowCount)
         {
             heavySnowCount++;
             disasterDictionary["HeavySnow"]?.onPlay.Invoke();

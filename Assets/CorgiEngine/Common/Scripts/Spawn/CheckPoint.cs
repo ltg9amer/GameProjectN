@@ -66,7 +66,7 @@ namespace MoreMountains.CorgiEngine
 		/// Describes what happens when something enters the checkpoint
 		/// </summary>
 		/// <param name="collider">The Collider2D colliding with the checkpoint.</param>
-		protected virtual void OnTriggerEnter2D(Collider2D collider)
+		public virtual void OnTriggerEnter2D(Collider2D collider)
 		{
 			Character character = collider.GetComponent<Character>();
 

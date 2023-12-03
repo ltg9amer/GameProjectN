@@ -40,6 +40,21 @@ namespace MoreMountains.Tools
 					MMAdditiveSceneLoadingManager.LoadScene(SceneName);
 					break;
 			}
-		}
-	}
+        }
+        public void LoadScene(string sceneName)
+        {
+            switch (LoadingSceneMode)
+            {
+                case LoadingSceneModes.UnityNative:
+                    SceneManager.LoadScene(sceneName);
+                    break;
+                case LoadingSceneModes.MMSceneLoadingManager:
+                    MMSceneLoadingManager.LoadScene(sceneName);
+                    break;
+                case LoadingSceneModes.MMAdditiveSceneLoadingManager:
+                    MMAdditiveSceneLoadingManager.LoadScene(sceneName);
+                    break;
+            }
+        }
+    }
 }
