@@ -18,8 +18,6 @@ public class DisasterManager : MonoBehaviour
     public float TidalWaveDelay => tidalWaveDelay;
     private Dictionary<string, Disaster> disasterDictionary = new Dictionary<string, Disaster>();
     public Dictionary<string, Disaster> DisasterDictionary => disasterDictionary;
-    private int hailCount = 1;
-    private int heavySnowCount = 1;
 
     private void Awake()
     {
@@ -43,15 +41,15 @@ public class DisasterManager : MonoBehaviour
             disasterDictionary["ColdWave"]?.onPlay.Invoke();
         }
 
-        if (GameManager.instance.currentUserData.PlayTime / hailDelay > hailCount)
+        if (GameManager.instance.currentUserData.PlayTime / hailDelay > GameManager.instance.currentUserData.HailCount)
         {
-            hailCount++;
+            GameManager.instance.currentUserData.HailCount++;
             disasterDictionary["Hail"]?.onPlay.Invoke();
         }
 
-        if (GameManager.instance.currentUserData.PlayTime / heavySnowDelay > heavySnowCount)
+        if (GameManager.instance.currentUserData.PlayTime / heavySnowDelay > GameManager.instance.currentUserData.HeavySnowCount)
         {
-            heavySnowCount++;
+            GameManager.instance.currentUserData.HeavySnowCount++;
             disasterDictionary["HeavySnow"]?.onPlay.Invoke();
         }
     }

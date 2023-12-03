@@ -95,6 +95,34 @@ public struct UserData
         }
     }
     [SerializeField]
+    private int hailCount;
+    public int HailCount
+    {
+        get
+        {
+            return hailCount;
+        }
+
+        set
+        {
+            hailCount = value;
+        }
+    }
+    [SerializeField]
+    private int heavySnowCount;
+    public int HeavySnowCount
+    {
+        get
+        {
+            return heavySnowCount;
+        }
+
+        set
+        {
+            heavySnowCount = value;
+        }
+    }
+    [SerializeField]
     private int jumpCount;
     public int JumpCount
     {
@@ -137,12 +165,14 @@ public struct UserData
         }
     }
 
-    public UserData(string userName, int checkpointCount = 1, int deathCount = 0, int jumpCount = 0, float playTime = 0f)
+    public UserData(string userName, int checkpointCount = 1, int deathCount = 0, int hailCount = 1, int heavySnowCount = 1, int jumpCount = 0, float playTime = 0f)
     {
         this.userName = userName;
-        settingData = new SettingData(false, 1f, 1f);
+        settingData = new SettingData(false);
         this.checkpointCount = checkpointCount;
         this.deathCount = deathCount;
+        this.hailCount = hailCount;
+        this.heavySnowCount = heavySnowCount;
         this.jumpCount = jumpCount;
         this.playTime = playTime;
     }
@@ -212,7 +242,7 @@ public class GameManager : MonoBehaviour
         }
 
         isPlay = SceneManager.GetActiveScene().name == "PlayScene";
-        currentUserData = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("CurrentUser", JsonUtility.ToJson(new UserData("-", 1, 0, 0, 0f))));
+        currentUserData = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("CurrentUser", JsonUtility.ToJson(new UserData("-"))));
         rankingSaveList = JsonUtility.FromJson<RankingSaveList>(PlayerPrefs.GetString("Ranking", JsonUtility.ToJson(new RankingSaveList())));
         backgroundMusicSlider.value = currentUserData.settingData.BackgroundMusicVolume;
         soundEffectsSlider.value = currentUserData.settingData.SoundEffectsVolume;
@@ -225,12 +255,16 @@ public class GameManager : MonoBehaviour
             horizontalMovement = corgiCharacter.FindAbility<CharacterHorizontalMovement>();
             characterJump.jumpCount = currentUserData.JumpCount;
             CheckPoint[] checkpoints = FindObjectsOfType<CheckPoint>();
-            
+
             foreach (var checkpoint in checkpoints)
             {
                 if (checkpoint.CheckPointOrder < currentUserData.CheckpointCount)
                 {
+                    int temporaryCheckpointCount = currentUserData.CheckpointCount;
+
                     checkpoint.OnTriggerEnter2D(CorgiCharacter.GetComponent<Collider2D>());
+
+                    currentUserData.CheckpointCount = temporaryCheckpointCount;
                 }
                 else if (checkpoint.CheckPointOrder == currentUserData.CheckpointCount)
                 {
@@ -277,7 +311,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            checkpointText.text = $"체크 포인트: {currentUserData.CheckpointCount}";
+            checkpointText.text = $"체크 포인트: {currentUserData.CheckpointCount} <alpha=#66> | <alpha=#FF> {currentUserData.DeathCount}회 사망 <alpha=#66> | <alpha=#FF> {(int)currentUserData.PlayTime / 60:D2}:{(int)currentUserData.PlayTime % 60:D2}";
         }
     }
 
@@ -308,8 +342,8 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < 3; ++i)
         {
-            rankingDataTexts[i].text = "Corgi";
-            rankingDataTexts[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "0회 사망\n00:00";
+            rankingDataTexts[i].text = "-";
+            rankingDataTexts[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "-회 사망\n--:--";
         }
     }
 
@@ -318,7 +352,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("CurrentUser");
 
-        currentUserData = new UserData("userName", 1, 0, 0, 0f);
+        currentUserData = new UserData("-");
         backgroundMusicSlider.value = currentUserData.settingData.BackgroundMusicVolume;
         soundEffectsSlider.value = currentUserData.settingData.SoundEffectsVolume;
 

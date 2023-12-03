@@ -415,7 +415,7 @@ namespace MoreMountains.CorgiEngine
 		protected virtual void SpawnSingleCharacter()
 		{
 			// in debug mode we spawn the player on the debug spawn point
-			#if UNITY_EDITOR
+			//#if UNITY_EDITOR
 			if (DebugSpawn!= null)
 			{
 				DebugSpawn.SpawnPlayer(Players[0]);
@@ -425,9 +425,9 @@ namespace MoreMountains.CorgiEngine
 			{
 				RegularSpawnSingleCharacter();
 			}
-			#else
+			/*#else
 				RegularSpawnSingleCharacter();
-			#endif
+			#endif*/
 		}
 
 		/// <summary>
