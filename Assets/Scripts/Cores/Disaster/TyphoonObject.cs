@@ -7,6 +7,9 @@ using UnityEngine;
 public class TyphoonObject : MonoBehaviour, IDisaster
 {
     [SerializeField]
+    private AudioSource alertSound;
+    public AudioSource AlertSound => alertSound;
+    [SerializeField]
     private GameObject warningPanel;
     public GameObject WarningPanel => warningPanel;
     [SerializeField]

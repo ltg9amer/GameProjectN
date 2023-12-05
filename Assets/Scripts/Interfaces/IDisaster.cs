@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IDisaster
 {
+    public AudioSource AlertSound { get; }
     public GameObject WarningPanel { get; }
 
     public virtual IEnumerator BlinkWarningPanel()
@@ -21,6 +22,7 @@ public interface IDisaster
         }*/
 
         // 짧은 경고 표시
+        AlertSound.Play();
         WarningPanel.SetActive(true);
 
         yield return new WaitForSeconds(0.75f);

@@ -30,6 +30,7 @@ public class TimelineSkip : MonoBehaviour
                     skipButton.enabled = true;
 
                     skipButton.DOFade(1f, 1f)
+                        .SetUpdate(true)
                         .OnComplete(() => StartCoroutine(SkipButtonLife()));
                 }
             }
@@ -54,6 +55,7 @@ public class TimelineSkip : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         skipButton.DOFade(0f, 1f)
+            .SetUpdate(true)
             .OnComplete(() => skipButton.enabled = false);
     }
 }

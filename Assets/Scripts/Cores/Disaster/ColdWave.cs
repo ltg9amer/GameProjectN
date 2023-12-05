@@ -8,6 +8,9 @@ public class ColdWave : Disaster, IDisaster
     [SerializeField]
     private List<GameObject> coldWaveScreens;
     [SerializeField]
+    private AudioSource alertSound;
+    public AudioSource AlertSound => alertSound;
+    [SerializeField]
     private GameObject warningPanel;
     public GameObject WarningPanel => warningPanel;
     [SerializeField]
